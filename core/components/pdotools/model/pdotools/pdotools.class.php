@@ -67,7 +67,7 @@ class pdoTools
             'outputSeparator' => "\n",
             'decodeJSON' => true,
             'scheme' => '',
-            'fenomSyntax' => $this->modx->getOption('pdotools_fenom_syntax', null, '#\{(\$|\/|\w+\s|\'|\()#', true),
+            'fenomSyntax' => $this->modx->getOption('pdotools_fenom_syntax', null, '#\<\$(\$|\/|\w+\s|\'|\()#', true),
             'elementsPath' => $this->modx->getOption('pdotools_elements_path', null, '{core_path}elements/', true),
             'cachePath' => '{core_path}cache/default/pdotools',
         ), $config);
@@ -1409,9 +1409,9 @@ class pdoTools
         }
         if (!empty($properties)) {
             $properties = htmlentities(print_r($properties, true), ENT_QUOTES, 'UTF-8');
-            $tag = '{' . $value . ' | ' . $filter . ' : ' . $properties . '}';
+            $tag = '<$' . $value . ' | ' . $filter . ' : ' . $properties . '$>';
         } else {
-            $tag = '{' . $value . ' | ' . $filter . '}';
+            $tag = '<$' . $value . ' | ' . $filter . '$>';
         }
 
         $this->debugParser($tag);
@@ -1432,9 +1432,9 @@ class pdoTools
         }
         if (!empty($properties)) {
             $properties = htmlentities(print_r($properties, true), ENT_QUOTES, 'UTF-8');
-            $tag = '{$_modx->' . $method . '("' . $name . '", ' . $properties . ')}';
+            $tag = '<$$_modx->' . $method . '("' . $name . '", ' . $properties . ')$>';
         } else {
-            $tag = '{$_modx->' . $method . '("' . $name . '")}';
+            $tag = '<$$_modx->' . $method . '("' . $name . '")$>';
         }
 
         $this->debugParser($tag);

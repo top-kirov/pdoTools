@@ -148,6 +148,7 @@ class pdoPage
                 ? $_REQUEST[$q_var]
                 : '';
             $this->req_var = $q_var;
+            
 
             $host = '';
             switch ($this->pdoTools->config['scheme']) {

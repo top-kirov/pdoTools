@@ -92,6 +92,7 @@ class pdoFetch extends pdoTools
             $output = $this->query->toSQL();
         } else {
             $this->modx->exec('SET SQL_BIG_SELECTS = 1');
+            $this->modx->exec('SET SESSION group_concat_max_len=1024000');
             $this->addTime('SQL prepared <small>"' . $this->query->toSQL() . '"</small>');
             $tstart = microtime(true);
             if ($this->query->stmt->execute()) {

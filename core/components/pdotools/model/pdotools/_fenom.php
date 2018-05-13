@@ -656,5 +656,10 @@ class FenomX extends Fenom
                 : $result;
         };
     }
+    
+    public function getModifiersKeys()
+    {
+    	return array_keys($this->_modifiers);
+    }
 
 }
